@@ -4,6 +4,10 @@ const baseUrl = Cypress.env("URL")
 const randomDigits = () => Math.floor(1000 + Math.random() * 9000)
 
 describe('Sign up and onboarding', () => {
+
+    beforeEach(() => {
+        cy.viewport(1440, 900)
+    })
     it('open gloabal sign in page', () => {
         cy.visit(baseUrl);
         cy.contains('Login with Phone Number');
@@ -65,5 +69,25 @@ describe('Sign up and onboarding', () => {
         cy.get('.profile-pic-size').click();
         cy.contains('Log Out').click();
         cy.contains('Sign In').should('exist')
+    })
+
+    it('Fill the student sign up form with Phone number', () => {
+        cy.visit(baseUrl);
+        cy.get('.ant-select-selection-search-input').type('test');
+        cy.contains('Cialfo test dev').click();
+        cy.contains('Student Signup').should('be.visible').click();
+        cy.get('[formcontrolname="firstName"]').type('Hamid');
+        cy.get('[formcontrolname="lastName"]').type('Second Name');
+        cy.get('label[nzvalue="M"]').click();
+        cy.get('.dropdown-toggle').should('be.visible').click();
+        cy.get('input[placeholder="Search Country"]').type('Pakistan').trigger('keypress');
+        cy.get('#iti-0__item-pk').scrollIntoView();
+        cy.get('#iti-0__item-pk').should('be.visible').click();
+        cy.get('#phone').type('03004013331')
+        cy.get('[formcontrolname="password"]').type('Pa$$W0rd@360');
+        cy.get('[formcontrolname="confirmPassword"]').type('Pa$$W0rd@360');
+        cy.contains('Create my account').parent().click();
+        cy.contains(' Skip the verification process temporarily ').should('exist').click();
+        cy.contains('Terms and Conditions').should('be.visible').click();
     })
 })
