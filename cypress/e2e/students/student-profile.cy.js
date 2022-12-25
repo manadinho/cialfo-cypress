@@ -1,16 +1,19 @@
 /// <reference types="cypress" />
 
 describe('Student Profile', () => {
-    it('Update Personal Information', () => {
+
+    beforeEach(() => {
         cy.viewport(1440, 900)
-        cy.visit(
-            "https://app.cialfo.sg/app/auth/signin?redirect_to=%252F&token=Zx2EE58K0tyzL8V4Xh7GLYYhQzHcz7Q05jrRXAcfw1&host_subdomain=companion-test"
-          );
-        cy.get('[formcontrolname="email"]').type("hamid+cypress+1122a@cialfo.com.sg");
-        cy.get('[formcontrolname="password"]').type("manadinho");
-        cy.get("app-button-primary").contains("Sign In").click();
-        cy.waitUntil(() => cy.get("[title='Profile']").should('be.visible'))
-        cy.get("[title='Profile']").should('be.visible').click();
+        cy.login('hamid+cypress+1122a@cialfo.com.sg', 'manadinho');
+
+    })
+
+    it('Open student profile', () => {
+        cy.viewProfile();
+        cy.url().should('contain', 'profile');
+    })
+    it('Update Personal Information', () => {
+        cy.viewProfile();
         cy.contains('Personal Information').should('exist');
         cy.contains(' Update Personal Information ').should('exist').click();
         cy.get('input[type="file"]').attachFile('profile.png');
@@ -42,5 +45,22 @@ describe('Student Profile', () => {
         cy.contains('Save Information').click();
         cy.contains('successfully').should('exist')
 
+    })
+
+    it('Update Application Detail', () => {
+        cy.viewProfile();
+        cy.contains(' Update Application Details ').should('be.visible').click();
+        cy.get('#applicationYear').click();
+        cy.get('.ant-select-item-option-content').contains('2019').click();
+        cy.get('#enrollmentYear').click();
+        cy.get('.ant-select-item-option-content').contains('2019').click();
+        cy.contains(' Add Academic Interest ').click();
+        cy.get('li').contains(' Computer and Networking Engineering Technology ').click();
+        cy.contains(' Add Group ').click();
+        cy.get('li').contains(' Bash Group ').click();
+        cy.get("[formcontrolname='isFinancialAidRequired']").find("input").check();
+        cy.contains('Save Changes').click();
+        cy.contains("Save Changes");
+        cy.contains('successfully').should('exist');
     })
 })
