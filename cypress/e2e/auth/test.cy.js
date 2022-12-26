@@ -4,9 +4,9 @@ describe('testing purpoe', () => {
     it('testing', () => {
 
         cy.visit(
-            "https://app.cialfo.sg/app/auth/signin?redirect_to=%252F&token=Zx2EE58K0tyzL8V4Xh7GLYYhQzHcz7Q05jrRXAcfw1&host_subdomain=companion-test"
+            "https://app.example.sg/app/auth/signin?redirect_to=%252F&token=Zx2EE58K0tyzL8V4Xh7GLYYhQzHcz7Q05jrRXAcfw1&host_subdomain=companion-test"
           );
-          cy.get('[formcontrolname="email"]').type("hamid+cypress+1122a@cialfo.com.sg");
+          cy.get('[formcontrolname="email"]').type("hamid+cypress+1122a@example.com.sg");
           cy.get('[formcontrolname="password"]').type("manadinho");
           cy.get("app-button-primary").contains("Sign In").click();
 

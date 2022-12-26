@@ -32,7 +32,7 @@ Cypress.Commands.add('login', (email, password) => {
       
       // Fill out the login form and submit it
     cy.visit(
-      "https://app.cialfo.sg/app/auth/signin?redirect_to=%252F&token=Zx2EE58K0tyzL8V4Xh7GLYYhQzHcz7Q05jrRXAcfw1&host_subdomain=companion-test"
+      "https://app.example.sg/app/auth/signin?redirect_to=%252F&token=Zx2EE58K0tyzL8V4Xh7GLYYhQzHcz7Q05jrRXAcfw1&host_subdomain=companion-test"
     );
     cy.get('[formcontrolname="email"]').type(email);
     cy.get('[formcontrolname="password"]').type(password);
@@ -47,6 +47,6 @@ Cypress.Commands.add('login', (email, password) => {
   });
 
 Cypress.Commands.add('viewProfile', () => {
-  cy.visit('https://companion-test.cialfo.sg/app/23114/home-new')
+  cy.visit('https://companion-test.example.sg/app/23114/home-new')
   cy.get("[title='Profile']").should('be.visible').click();
 })

@@ -15,7 +15,7 @@ describe('Sign up and onboarding', () => {
 
     it('Search for a tenant', () => {
         cy.get('.ant-select-selection-search-input').type('test');
-        cy.contains('Cialfo test dev').click();
+        cy.contains('exaple test dev').click();
         cy.contains('Student Signup').should('exist')
     })
 
@@ -28,7 +28,7 @@ describe('Sign up and onboarding', () => {
         cy.get('[formcontrolname="firstName"]').type('Hamid');
         cy.get('[formcontrolname="lastName"]').type('Second Name');
         cy.get('label[nzvalue="M"]').click();
-        cy.get('[formcontrolname="email"]').type(`hamid+cypress+${randomDigits()}a@cialfo.com.sg`);
+        cy.get('[formcontrolname="email"]').type(`hamid+cypress+${randomDigits()}a@exaple.com.sg`);
         cy.get('[formcontrolname="password"]').type('Pa$$W0rd@360');
         cy.get('[formcontrolname="confirmPassword"]').type('Pa$$W0rd@360');
         cy.contains('Create my account').parent().click();
@@ -74,7 +74,7 @@ describe('Sign up and onboarding', () => {
     it('Fill the student sign up form with Phone number', () => {
         cy.visit(baseUrl);
         cy.get('.ant-select-selection-search-input').type('test');
-        cy.contains('Cialfo test dev').click();
+        cy.contains('exaple test dev').click();
         cy.contains('Student Signup').should('be.visible').click();
         cy.get('[formcontrolname="firstName"]').type('Hamid');
         cy.get('[formcontrolname="lastName"]').type('Second Name');

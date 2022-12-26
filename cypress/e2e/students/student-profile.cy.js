@@ -4,7 +4,7 @@ describe('Student Profile', () => {
 
     beforeEach(() => {
         cy.viewport(1440, 900)
-        cy.login('hamid+cypress+1122a@cialfo.com.sg', 'manadinho');
+        cy.login('hamid+cypress+1122a@example.com.sg', 'manadinho');
 
     })
 
